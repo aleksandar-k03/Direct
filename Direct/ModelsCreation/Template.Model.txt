@@ -1,0 +1,18 @@
+﻿using Direct.Models;
+using System;
+
+// auto generated [date]
+
+namespace Direct.[database_name].Models
+{
+	public partial class [table_class_name]DM : [database_name]DirectModel
+	{
+
+		public [table_class_name]DM() : base("[table_name]", "[table_id]", null){}
+		public [table_class_name]DM(DirectDatabaseBase db) : base("[table_name]", "[table_id]", db){}
+		public override string GetSchemaName() => "[table_schema]";
+
+		[table_content]
+
+	}
+}

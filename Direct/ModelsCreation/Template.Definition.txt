@@ -1,0 +1,12 @@
+﻿using Direct.Models;
+using System;
+
+// auto generated [date]
+
+namespace Direct.[database_name].Models
+{
+	public partial class [table_class_name]DM : [database_name]DirectModel
+  {
+
+  }
+}

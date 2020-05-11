@@ -1,0 +1,14 @@
+﻿using Direct.Models;
+using System;
+
+// auto generated [date]
+
+namespace Direct.[database_name].Models
+{
+  public abstract class [database_name]DirectModel : DirectModel
+  {
+    public [database_name]DirectModel(string tableName, string id_name, DirectDatabaseBase db) : base(tableName, id_name, db) { }
+    public override DirectDatabaseType DatabaseType => DirectDatabaseType.[database_type];
+    protected override DirectDatabaseBase DatabaseReference => new [direct_manager]();
+  }
+}

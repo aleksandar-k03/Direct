@@ -1,0 +1,3 @@
+﻿
+		[DColumn(Name = "[column_name]"[dcolumn])]
+		public [column_type] [column_name] { get; set; } = [column_value];
