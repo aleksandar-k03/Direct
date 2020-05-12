@@ -24,6 +24,8 @@ namespace Direct.Types.SQLServer
     protected override string OnBeforeCommandOverride(string command) => command;
 
     internal override string QueryLoadSingle { get => "SELECT TOP 1 {0} FROM [].{1} {2};"; }
+    internal override string QueryContructLoadWithLimit { get => "SELECT {limit} {0} FROM [].{1} {2} {3}"; }
+    internal override string QueryLimit { get => "TOP "; }
 
     public override string ConstructDatabaseNameAndScheme(string query) 
       => query.Trim().Replace("[].", string.Format("{0}.", this.DatabaseName));

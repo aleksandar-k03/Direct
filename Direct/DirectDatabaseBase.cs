@@ -1,4 +1,5 @@
 ﻿using Direct.Helpers;
+using Direct.Models;
 using Direct.ModelsCreation;
 using Direct.Results;
 using System;
@@ -46,6 +47,15 @@ namespace Direct
     internal virtual string QueryCount { get => "SELECT COUNT(*) FROM [].{0} {1};"; }
     internal virtual string QueryContructLoadByStringID { get => "SELECT {0} FROM [].{1} WHERE {2}='{3}';"; }
     internal virtual string QueryContructLoad { get => "SELECT {0} FROM [].{1} {2} {3}"; }
+    internal virtual string QueryContructLoadWithLimit { get => "SELECT {0} FROM [].{1} {2} {3} {limit}"; }
+    internal virtual string QueryLimit { get => "LIMIT "; }
+
+    internal virtual string QueryContructLoadWithLimitConstruct<T>(DirectQueryLoader<T> loader) where T : DirectModel
+    {
+      if (loader.Limit.HasValue == false)
+        return this.QueryContructLoadWithLimit.Replace("{limit}", string.Empty);
+      return this.QueryContructLoadWithLimit.Replace("{limit}", string.Format("{0} {1}", this.QueryLimit, loader.Limit.Value));
+    }
 
     internal virtual string QueryConstructInsertQuery { get => "INSERT INTO [].{0} ({1}) VALUES ({2});"; }
     internal virtual string QueryConstructUpdateQuery { get => "UPDATE [].{0} SET {1} WHERE {2}={3};"; }

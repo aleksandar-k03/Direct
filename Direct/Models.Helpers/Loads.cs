@@ -127,7 +127,7 @@ namespace Direct
 
     internal static string ContructLoad<T>(this DirectQueryLoader<T> loader) where T : DirectModel
     {
-      return string.Format(loader.Database.QueryContructLoad,
+      return string.Format(loader.Database.QueryContructLoadWithLimitConstruct<T>(loader),
         loader.SelectQuery,
         loader.Instance.GetTableName(),
         loader.WhereQuery,

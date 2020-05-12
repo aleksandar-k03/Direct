@@ -67,7 +67,7 @@ namespace Direct
 
     public static async Task<List<T>> LoadAsync<T>(this DirectQueryLoader<T> loader) where T : DirectModel
     {
-      string command = string.Format(loader.Database.QueryContructLoad,
+      string command = string.Format(loader.Database.QueryContructLoadWithLimitConstruct<T>(loader),
         loader.SelectQuery,
         loader.Instance.GetTableName(),
         loader.WhereQuery,

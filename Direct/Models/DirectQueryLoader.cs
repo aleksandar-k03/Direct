@@ -11,6 +11,7 @@ namespace Direct
     private List<string> constructWhereParameters = null;
 
     public DirectDatabaseBase Database { get; set; }
+    public int? Limit { get; set; } = null;
     public string Select { get; set; } = string.Empty;
     public string Where { get; set; } = string.Empty;
     public string Additional { get; set; } = string.Empty;

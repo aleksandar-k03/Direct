@@ -57,5 +57,12 @@ namespace Direct
     }
 
 
+    public static DirectQueryLoader<T> Limit<T>(this DirectQueryLoader<T> loader, int input) where T : DirectModel
+    {
+      loader.Limit = input;
+      return loader;
+    }
+
+
   }
 }
