@@ -27,6 +27,7 @@ namespace Direct
 
     internal static string GetObjectQueryValue(this DirectDatabaseBase db, PropertyInfo obj, DirectModelPropertySignature signature, object parentObject)
     {
+      var model = parentObject as DirectModel;
       if (obj == null)
         return "NULL";
 
@@ -52,7 +53,10 @@ namespace Direct
         || type == typeof(uint?) || type == typeof(ulong?) || type == typeof(short?))
         return value.ToString();
       else if (type == typeof(string) || type == typeof(Guid) || type == typeof(String) || type == typeof(char))
-        return string.Format("'{0}'", value.ToString().EscapeString());
+      {
+        string extra = model.GetDatabase().DatabaseType == DirectDatabaseType.SQLServer ? "N" : ""; // for adding utf8 data
+        return string.Format(extra + "'{0}'", value.ToString().EscapeString());
+      }
       else if(type == typeof(byte[]))
       {
         byte[] data = (byte[])value;
