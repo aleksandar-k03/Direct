@@ -213,8 +213,18 @@ namespace Direct.ModelsCreation
         result += ", HasDefaultValue=true";
       if (column.IsNullable)
         result += ", Nullable=true";
-      if (column.TranslatedType.Equals("DateTime") && !string.IsNullOrEmpty(column.Default))
-        result += ", DateTimeUpdate=true, NotUpdatable=true";
+
+      if(column.TranslatedType.Equals("DateTime"))
+      {
+        if(column.Name.ToLower().Equals("updated"))
+          result += ", DateTimeUpdate=true, NotUpdatable=true";
+        else if(column.Name.ToLower().Equals("created"))
+          result += ", NotUpdatable=true";
+        else if(!string.IsNullOrEmpty(column.Default))
+          result += ", NotUpdatable=true";
+      }
+      //if (column.TranslatedType.Equals("DateTime") && !string.IsNullOrEmpty(column.Default))
+      //  result += ", DateTimeUpdate=true, NotUpdatable=true";
 
       return result;
     }
